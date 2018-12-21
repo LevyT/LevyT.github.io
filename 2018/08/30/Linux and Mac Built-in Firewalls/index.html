@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta name="author" content="Tomer Levy"><link rel="icon" href="/tomer.jpeg"><title>Tomer Levy's Information Security Blog</title><meta name="description"><link rel="alternate" type="application/rss+xml" title="Tomer Levy's Information Security Blog" href="/atom.xml"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class="container-fluid"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#main-navbar" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">Tomer Levy's Information Security Blog</a></div><div id="main-navbar" class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li><a href="/archives">Archive</a></li><li><a href="/about/">About</a></li></ul></div><div class="avatar-container"><div class="avatar-img-border"><a href="/"><img src="/tomer.jpeg" class="avatar-img"></a></div></div></div></nav><header class="header-section"><div class="intro-header no-img"><div class="container"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class="post-heading"><h1>Linux and Mac Built-in Firewalls</h1><p class="post-meta">Posted on Aug 30 2018</p></div></div></div></div></div></header><div class="container"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role="main" class="blog-post"><p><strong>*Nix Built-in Firewalls</strong></p>
+<p>Network data is sent in the form packets over the internet. *nix kernel<br>provides an interface to filter both incoming and outgoing traffic<br>packets using tables of packet filters. Iptables is a command line<br>application for Linux and PF for macOS</p>
+<p><img src="/images/pexels-photo-1148820.jpeg" alt=""></p>
+<p>Multiple tables can be defined. Each table can contain multiple chains.<br>A chain is nothing but a set of rules. Each rule defines what to do with<br>the packet if it matches with that packet.</p>
+<p><strong>Working with them requires Sudo Privileges for any action thus because<br>it is a Kernel module</strong></p>
+<p><strong>On Linux:</strong></p>
+<p>Inorder to save our tables we will install iptables-persistent although<br>there are other methods to do this.</p>
+<p><code>sudo apt-get install iptables-persistent</code></p>
+<p>Each time we want to save we will run this command:\<br><code>sudo netfilter-persistent save</code></p>
+<p><code>sudo iptables -nvL</code>\<br>This will list the table rules.</p>
+<p><code>sudo iptables -A &lt;CHAIN&gt; -i &lt;interface&gt; -p &lt;protocol (tcp/udp)&gt; -s &lt;source&gt; --dport &lt;port&gt;  -j &lt;ACCEPT/DROP&gt;</code>\<br>This will Append a rule to the specified Chain</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line">2. sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT</span><br><span class="line">3. sudo iptables -A INPUT -j DROP</span><br></pre></td></tr></table></figure>
+<p>This will allow Incoming traffic on port 80,443 and deny all other.</p>
+<p><strong>On macOS:</strong></p>
+<p><code>sudo pfctl -d</code>\<br>Disable the packet filter.</p>
+<p><code>sudo pfctl -e</code>\<br>Enable the packet filter.</p>
+<p>You are going to need to edit this file > <code>/etc/pf.conf</code></p>
+<p>Add any needed line to the end of your file by this format:</p>
+<p>[Actions] [Direction] [Protocol UDP/TCP] [IP] [PORT]</p>
+<p><code>block drop out quick proto udp to 8.8.8.8 port 53</code></p>
+<p>This example will block from reciving google DNS traffic</p>
+<p><code>pass in proto tcp from any to any port { 80, 443 }</code></p>
+<p>This rule will enable incoming traffic on port 80 and 443.</p>
+<p>After editing this will reload the configurations:</p>
+<p><code>sudo pfctl -f /etc/pf.conf</code></p>
+<p><strong>To summarize this, both firewalls are highly customizeable and can get<br>any ip:set rule done,</strong></p>
+<p><strong>both of the firewalls are capable to become stateful - I suggest<br>further reading on statefull firewalls (Iptables/PFctl)</strong></p>
+</article><ul class="pager blog-pager"><li class="previous"><a href="/2018/09/02/Jerry-Walkthrough/" data-toggle="tooltip" data-placement="top" title="Jerry-Walkthrough">← Post Precendete</a></li><li class="next"><a href="/2018/08/28/EC2Msfconsole/" data-toggle="tooltip" data-placement="top" title="How I Hacked Everyone - IOT Hacking">Post Successivo →</a></li></ul><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts = window.location.href.split("?");
+var disqus_url = url_parts[0];
+(function () {
+    console.log("enter disqus");
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = "//levyt.disqus.com/embed.js";
+    (document.head || d.body ).appendChild(dsq);
+})();</script></div></div></div><footer><div class="container beautiful-jekyll-footer"><div class="row"><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"><li><a href="/atom.xml" title="RSS"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-rss"></i></span></a></li><li><a href="mailto:tl1996@gmail.com" title="Email me"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-envelope"></i></span></a></li><li><a href="https://www.linkedin.com/in/tomer-levy/" title="LinkedIn"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse fa-linkedin"></i></span></a></li></ul><p class="copyright text-muted">© Tomer Levy • 2018 • <a href="mailto:undefined"></a>
+</p><p class="theme-by text-muted">Theme by
+<a href="https://github.com/twoyao/beautiful-hexo">beautiful-hexo</a></p></div></div></div></footer><script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script><script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script src="/js/main.js"></script><script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-124261609-1', 'auto');
+ga('send', 'pageview');</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body></html>
