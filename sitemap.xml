@@ -9,7 +9,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/10/19/Setting%20up%20Selenium%20for%20Python/</loc>
+    <loc>http://yoursite.com/2018/08/16/SSH-Key-Script/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
@@ -23,14 +23,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/08/30/Linux%20and%20Mac%20Built-in%20Firewalls/</loc>
+    <loc>http://yoursite.com/2018/08/16/Emails-From-CLI/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/08/16/Emails-From-CLI/</loc>
+    <loc>http://yoursite.com/2018/08/30/Linux%20and%20Mac%20Built-in%20Firewalls/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/10/16/Part%202%20Upgrading%20ElasticSearch%20to%20Search%20on%20the%20DarkWeb/</loc>
-    
-    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/09/09/Node-Mail-Api/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
@@ -58,7 +51,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/08/16/SSH-Key-Script/</loc>
+    <loc>http://yoursite.com/2018/10/16/Part%202%20Upgrading%20ElasticSearch%20to%20Search%20on%20the%20DarkWeb/</loc>
+    
+    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/08/17/Linux-on-Windows/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/08/17/Linux-on-Windows/</loc>
+    <loc>http://yoursite.com/2018/10/19/Setting%20up%20Selenium%20for%20Python/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
