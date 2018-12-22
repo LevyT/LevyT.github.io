@@ -2,21 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2018/12/21/a%20Declarative%20guide%20to%20building%20Jenkins%20Pipeline%20Part%201/</loc>
+    <loc>http://yoursite.com/2018/12/22/a%20Declarative%20guide%20to%20building%20Jenkins%20Pipeline%20Part%202/</loc>
     
-    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/10/25/Browser%20Automation%20for%20NodeJS%20Puppeteer/</loc>
-    
-    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    <lastmod>2018-12-22T20:15:37.257Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/09/02/Jerry-Walkthrough/</loc>
+    <loc>http://yoursite.com/2018/10/19/Setting%20up%20Selenium%20for%20Python/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
@@ -24,6 +17,20 @@
   
   <url>
     <loc>http://yoursite.com/2018/08/30/Linux%20and%20Mac%20Built-in%20Firewalls/</loc>
+    
+    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/11/07/My%20way%20for%20file%20serving/</loc>
+    
+    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/09/02/Jerry-Walkthrough/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
@@ -44,28 +51,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/11/07/My%20way%20for%20file%20serving/</loc>
-    
-    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/08/16/SSH-Key-Script/</loc>
-    
-    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/10/19/Setting%20up%20Selenium%20for%20Python/</loc>
-    
-    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/09/11/Installing%20ElasticSearch%20Kibanna%20on%20Ubuntu%2016.04/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
@@ -79,7 +65,28 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2018/09/11/Installing%20ElasticSearch%20Kibanna%20on%20Ubuntu%2016.04/</loc>
+    
+    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/08/17/Linux-on-Windows/</loc>
+    
+    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/12/21/a%20Declarative%20guide%20to%20building%20Jenkins%20Pipeline%20Part%201/</loc>
+    
+    <lastmod>2018-12-21T17:32:28.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/10/25/Browser%20Automation%20for%20NodeJS%20Puppeteer/</loc>
     
     <lastmod>2018-12-21T17:32:28.132Z</lastmod>
     
