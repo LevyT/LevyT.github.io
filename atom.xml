@@ -531,11 +531,11 @@
       <category term="DevOps" scheme="http://yoursite.com/categories/DevOps/"/>
     
     
-      <category term="Scripts" scheme="http://yoursite.com/tags/Scripts/"/>
-    
       <category term="IT" scheme="http://yoursite.com/tags/IT/"/>
     
       <category term="System" scheme="http://yoursite.com/tags/System/"/>
+    
+      <category term="Scripts" scheme="http://yoursite.com/tags/Scripts/"/>
     
   </entry>
   
@@ -559,9 +559,9 @@
     </summary>
     
     
-      <category term="Scripts" scheme="http://yoursite.com/tags/Scripts/"/>
-    
       <category term="Mail" scheme="http://yoursite.com/tags/Mail/"/>
+    
+      <category term="Scripts" scheme="http://yoursite.com/tags/Scripts/"/>
     
   </entry>
   
