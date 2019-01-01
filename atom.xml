@@ -40,9 +40,9 @@
     
       <category term="NodeJS" scheme="http://yoursite.com/tags/NodeJS/"/>
     
-      <category term="Hacking" scheme="http://yoursite.com/tags/Hacking/"/>
-    
       <category term="Puppeteer" scheme="http://yoursite.com/tags/Puppeteer/"/>
+    
+      <category term="Hacking" scheme="http://yoursite.com/tags/Hacking/"/>
     
   </entry>
   
