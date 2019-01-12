@@ -72,9 +72,9 @@
       <category term="Code" scheme="http://yoursite.com/categories/Code/"/>
     
     
-      <category term="Hacking" scheme="http://yoursite.com/tags/Hacking/"/>
-    
       <category term="NodeJS" scheme="http://yoursite.com/tags/NodeJS/"/>
+    
+      <category term="Hacking" scheme="http://yoursite.com/tags/Hacking/"/>
     
       <category term="Puppeteer" scheme="http://yoursite.com/tags/Puppeteer/"/>
     
